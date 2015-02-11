@@ -1,6 +1,5 @@
 .DS_Store
 .sass-cache
-build
 Desktop.ini
 node_modules
 src/specs/compiled_js

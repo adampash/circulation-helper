@@ -1,0 +1,36 @@
+/* line 5, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+body {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto; }
+
+/* line 11, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+div.container {
+  width: 100%; }
+
+/* line 15, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+input[type=text] {
+  width: 500px;
+  margin-bottom: 10px; }
+  /* line 18, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+  input[type=text]:focus {
+    outline: none; }
+
+/* line 23, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+.stuff {
+  width: 500px;
+  height: 200px;
+  display: none; }
+
+/* line 29, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+.result {
+  border-top: rgba(0, 0, 0, 0.3) 1px dashed;
+  border-bottom: rgba(0, 0, 0, 0.3) 1px dashed;
+  height: auto;
+  min-height: 200px; }
+  /* line 34, /Users/ap/code/labs/interactives/circ/src/sass/app.sass */
+  .result:focus {
+    outline: none; }
+
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5zYXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtFQUtFLEFBQVc7RUFDWCxBQUFPO0VBQ1AsQUFBUTs7O0FBR1YsQUFBRztFQUNELEFBQU87OztBQUdULEFBQUs7RUFDSCxBQUFPO0VBQ1AsQUFBZTs7RUFBakIsQUFBSyxBQUFXO0lBRVosQUFBUzs7O0FBSWI7RUFDRSxBQUFPO0VBQ1AsQUFBUTtFQUNSLEFBQVM7OztBQUdYO0VBQ0UsQUFBMEI7RUFDMUIsQUFBNkI7RUFDN0IsQUFBUTtFQUNSLEFBQVk7O0VBQWQsQUFBTztJQUVILEFBQVMiLCJmaWxlIjoiYXBwLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIEBpbXBvcnQoXCJzY3NzLW1peGluc1wiKTtcbi8vIEBpbXBvcnQoXCJ0eXBvZ3JhcGh5XCIpO1xuLy8gQGltcG9ydChcImlmcmFtZXNcIik7XG5cbmJvZHkge1xuICBtYXgtd2lkdGg6IDUwMHB4O1xuICB3aWR0aDogMTAwJTtcbiAgbWFyZ2luOiAwIGF1dG87XG59XG5cbmRpdi5jb250YWluZXIge1xuICB3aWR0aDogMTAwJTtcbn1cblxuaW5wdXRbdHlwZT10ZXh0XSB7XG4gIHdpZHRoOiA1MDBweDtcbiAgbWFyZ2luLWJvdHRvbTogMTBweDtcbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogbm9uZTtcbiAgfVxufVxuXG4uc3R1ZmYge1xuICB3aWR0aDogNTAwcHg7XG4gIGhlaWdodDogMjAwcHg7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG5cbi5yZXN1bHQge1xuICBib3JkZXItdG9wOiByZ2JhKDAsMCwwLDAuMykgMXB4IGRhc2hlZDtcbiAgYm9yZGVyLWJvdHRvbTogcmdiYSgwLDAsMCwwLjMpIDFweCBkYXNoZWQ7XG4gIGhlaWdodDogYXV0bztcbiAgbWluLWhlaWdodDogMjAwcHg7XG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IG5vbmU7XG4gIH1cbn1cbiJdLCJzb3VyY2VSb290IjoiL3NvdXJjZS8ifQ== */
