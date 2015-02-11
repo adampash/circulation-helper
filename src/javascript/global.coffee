@@ -8,14 +8,15 @@ $('.link_input, .stuff, .result').on 'click', (e) ->
 
 $('.link_input').on 'keyup', (e) ->
   $(@).blur()
+  $(@).focus()
 $('.link_input').on 'change', (e) ->
   link = $(@).val().split('#')[0].split('+')[0]
   if LinkGetter.isLink(link)
     LinkGetter.getPost link
 
 module.exports = LinkGetter =
-  # api: "http://kinja.com/api/core/post"
   api: "http://localhost:4567/post"
+  api: "https://kinja-api.herokuapp.com/post"
   isLink: (link) ->
     link.match(/-(\d+)\/?$/)
   postId: (link) ->
@@ -34,6 +35,7 @@ module.exports = LinkGetter =
         text = @linkify(post)
         $('.stuff').val("#{$('.stuff').val()}#{text}")
         $('.result').html("#{$('.stuff').val()}")
+        $('.link_input').select()
 
   getDayOfWeek: ->
     moment().format('dddd').toLowerCase()
