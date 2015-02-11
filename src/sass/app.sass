@@ -1,3 +1,37 @@
-@import scss-mixins
-@import typography
-@import iframes
+// @import("scss-mixins");
+// @import("typography");
+// @import("iframes");
+
+body {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+div.container {
+  width: 100%;
+}
+
+input[type=text] {
+  width: 500px;
+  margin-bottom: 10px;
+  &:focus {
+    outline: none;
+  }
+}
+
+.stuff {
+  width: 500px;
+  height: 200px;
+  display: none;
+}
+
+.result {
+  border-top: rgba(0,0,0,0.3) 1px dashed;
+  border-bottom: rgba(0,0,0,0.3) 1px dashed;
+  height: auto;
+  min-height: 200px;
+  &:focus {
+    outline: none;
+  }
+}
