@@ -1,11 +1,8 @@
 $ = require './jquery.js'
 moment = require './moment.js'
-# Parse = require './parse.js'
-Parse.initialize("2D2A51Wu2XBilXK0ChikupaOjRgKEpr2krXZ5SU3", "ymu7i43IuWILrI5YQGj3JA1u0q2cQEWL1a2kOFKK")
 
 $('.link_input, .stuff, .result').on 'click', (e) ->
   $(@).select()
-
 $('.link_input').on 'keyup', (e) ->
   $(@).blur()
   $(@).focus()
@@ -15,7 +12,6 @@ $('.link_input').on 'change', (e) ->
     LinkGetter.getPost link
 
 module.exports = LinkGetter =
-  api: "http://localhost:4567/post"
   api: "https://kinja-api.herokuapp.com/post"
   isLink: (link) ->
     link.match(/-(\d+)\/?$/)
@@ -31,11 +27,43 @@ module.exports = LinkGetter =
       url: url
       dataType: "jsonp"
       success: (data) =>
+        type = $('input[name=roundup-type]:checked', '.radios').val()
         post = JSON.parse data
-        text = @linkify(post)
-        $('.stuff').val("#{$('.stuff').val()}#{text}")
-        $('.result').html("#{$('.stuff').val()}")
-        $('.link_input').select()
+        if post.data.starterId is post.data.id
+          if $('.jane').prop('checked')
+            @circ(post)
+          else
+            @link(post)
+        else
+          @comment(post)
+
+  link: (post) ->
+    @updateBox @linkify(post, false)
+
+  circ: (post) ->
+    @updateBox @linkify(post, true)
+
+  comment: (post) ->
+    @updateBox """
+        &#8203;
+        <blockquote>
+          &#8203;
+          #{post.data.original}
+          <p>– <a class="inset-skip" href="#{post.data.permalink}">#{post.data.author.displayName}</a></p>
+        </blockquote>
+        &#8203;
+        <p class="end_of_roundup">End of roundup</p>
+      """
+    , false
+
+  updateBox: (text, clear=false) ->
+    $('.end_of_roundup').remove()
+    if clear
+      $('.result').html(text)
+    else
+      $('.result').html("#{$('.result').html()}#{text}")
+    # $('.result').html("#{$('.stuff').val()}")
+    $('.link_input').select()
 
   getDayOfWeek: ->
     moment().format('dddd').toLowerCase()
@@ -50,9 +78,12 @@ module.exports = LinkGetter =
         name = blog.displayName
     name
 
-  linkify: (post) ->
+  linkify: (post, circ=true) ->
+    campaign = ""
+    if circ
+      campaign = "?utm_source=recirculation&utm_medium=recirculation&utm_campaign=#{@getDayOfWeek()}#{@getMerdian()}"
     blog_name = @get_blog_name(post)
-    post_link = "<strong>#{blog_name}</strong> <a href=\"#{post.data.permalink}?utm_source=recirculation&utm_medium=recirculation&utm_campaign=#{@getDayOfWeek()}#{@getMerdian()}\">#{post.data.headline}</a> | "
+    post_link = "<strong>#{blog_name}</strong> <a class=\"inset-skip\" href=\"#{post.data.permalink}#{campaign}\">#{post.data.headline}</a> | "
 
 # link = "http://gawker.com/transasia-plane-crashes-over-highway-into-taipei-harbor-1683654957"
 # LinkGetter.getPost link, (post) ->
