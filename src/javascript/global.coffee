@@ -1,7 +1,7 @@
 $ = require './jquery.js'
 moment = require './moment.js'
 
-$('.link_input, .stuff, .result').on 'click', (e) ->
+$('.link_input, .result').on 'click', (e) ->
   $(@).select()
 $('.link_input').on 'keyup', (e) ->
   $(@).blur()
@@ -62,7 +62,6 @@ module.exports = LinkGetter =
       $('.result').html(text)
     else
       $('.result').html("#{$('.result').html()}#{text}")
-    # $('.result').html("#{$('.stuff').val()}")
     $('.link_input').select()
 
   getDayOfWeek: ->
@@ -85,7 +84,4 @@ module.exports = LinkGetter =
     blog_name = @get_blog_name(post)
     post_link = "<strong>#{blog_name}</strong> <a class=\"inset-skip\" href=\"#{post.data.permalink}#{campaign}\">#{post.data.headline}</a> | "
 
-# link = "http://gawker.com/transasia-plane-crashes-over-highway-into-taipei-harbor-1683654957"
-# LinkGetter.getPost link, (post) ->
-#   debugger
 $('.link_input').focus()
