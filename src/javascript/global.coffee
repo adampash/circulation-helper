@@ -14,9 +14,16 @@ $('.link_input').on 'change', (e) ->
 module.exports = LinkGetter =
   api: "https://kinja-api.herokuapp.com/post"
   isLink: (link) ->
+    @newLink(link) or @oldLink(link)
+  newLink: (link) ->
     link.match(/-(\d+)\/?$/)
+  oldLink: (link) ->
+    link.match(/\.com\/\d+\//)
   postId: (link) ->
-    link.match(/-(\d+)\/?$/)[1]
+    if @newLink(link)
+      link.match(/-(\d+)\/?$/)[1]
+    else
+      link.match(/\.com\/(\d+)\//)[1]
   apiURL: (link) ->
     "#{@api}/#{@postId(link)}"
 
