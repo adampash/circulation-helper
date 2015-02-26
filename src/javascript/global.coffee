@@ -88,7 +88,14 @@ module.exports = LinkGetter =
     campaign = ""
     if circ
       campaign = "?utm_source=recirculation&utm_medium=recirculation&utm_campaign=#{@getDayOfWeek()}#{@getMerdian()}"
-    blog_name = @get_blog_name(post)
-    post_link = "<strong>#{blog_name}</strong> <a class=\"inset-skip\" href=\"#{post.data.permalink}#{campaign}\">#{post.data.headline}</a> | "
+    if $('.big_round').prop('checked')
+      post_link = "<h3><a href=\"#{post.data.permalink}\">#{post.data.headline}</a></h3>"
+      post_link += "<a href=\"#{post.data.permalink}\"><img src=\"#{post.data.images[0].uri}\" /></a>"
+      post_link += post.data.parsedBody.excerpt
+      # debugger
+    else
+      blog_name = @get_blog_name(post)
+      post_link = "<strong>#{blog_name}</strong> <a class=\"inset-skip\" href=\"#{post.data.permalink}#{campaign}\">#{post.data.headline}</a> | "
+    post_link
 
 $('.link_input').focus()
