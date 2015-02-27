@@ -12,7 +12,8 @@ $('.link_input').on 'change', (e) ->
     LinkGetter.getPost link
 
 module.exports = LinkGetter =
-  api: "https://kinja-api.herokuapp.com/post"
+  api: "http://kinja.com/api/core/post"
+
   isLink: (link) ->
     @newLink(link) or @oldLink(link)
   newLink: (link) ->
@@ -33,9 +34,9 @@ module.exports = LinkGetter =
     $.ajax
       url: url
       dataType: "jsonp"
-      success: (data) =>
+      jsonp: 'jsonp'
+      success: (post) =>
         type = $('input[name=roundup-type]:checked', '.radios').val()
-        post = JSON.parse data
         if post.data.starterId is post.data.id
           if $('.jane').prop('checked')
             @circ(post)
