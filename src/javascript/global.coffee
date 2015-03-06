@@ -91,8 +91,8 @@ module.exports = LinkGetter =
       campaign = "?utm_source=recirculation&utm_medium=recirculation&utm_campaign=#{@getDayOfWeek()}#{@getMerdian()}"
     if $('.big_round').prop('checked')
       post_link = "<h2><a href=\"#{post.data.permalink}\">#{post.data.headline}</a></h2>"
-      post_link += "<p><img src=\"#{post.data.parsedBody.sharingMainImage.src}\" /></p>"
-      post_link += post.data.parsedBody.excerpt
+      post_link += "<p><img src=\"#{post.data.sharingMainImage?.src or post.data.parsedBody.sharingMainImage?.src}\" /></p>"
+      post_link += post.data.excerpt or post.data.parsedBody.excerpt
     else
       blog_name = @get_blog_name(post)
       post_link = "<strong>#{blog_name}</strong> <a class=\"inset-skip\" href=\"#{post.data.permalink}#{campaign}\">#{post.data.headline}</a> | "
