@@ -8,8 +8,10 @@ $('.link_input').on 'keyup', (e) ->
   $(@).focus()
 $('.link_input').on 'change', (e) ->
   link = $(@).val().split('#')[0].split('+')[0]
-  if LinkGetter.isLink(link)
-    LinkGetter.getPost link
+  links = link.split(" ")
+  links.map (link) =>
+    if LinkGetter.isLink(link)
+      LinkGetter.getPost link
 
 module.exports = LinkGetter =
   api: "http://kinja.com/api/core/post"
