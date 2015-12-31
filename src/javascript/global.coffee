@@ -12,8 +12,15 @@ $('.link_input').on 'change', (e) ->
   links.map (link) =>
     if LinkGetter.isLink(link)
       LinkGetter.getPost link
+  LinkGetter.recursiveGet(links)
 
 module.exports = LinkGetter =
+  recursiveGet: (links) ->
+    link = links.shift()
+    if LinkGetter.isLink(link)
+      LinkGetter.getPost link, =>
+        if links.length
+          @recursiveGet(links)
   api: "http://kinja.com/api/core/post"
 
   isLink: (link) ->
@@ -46,6 +53,7 @@ module.exports = LinkGetter =
             @link(post)
         else
           @comment(post)
+        complete() if complete?
 
   link: (post) ->
     @updateBox @linkify(post, false)
