@@ -9,9 +9,6 @@ $('.link_input').on 'keyup', (e) ->
 $('.link_input').on 'change', (e) ->
   link = $(@).val().split('#')[0].split('+')[0]
   links = link.split(" ")
-  links.map (link) =>
-    if LinkGetter.isLink(link)
-      LinkGetter.getPost link
   LinkGetter.recursiveGet(links)
 
 module.exports = LinkGetter =
@@ -39,7 +36,7 @@ module.exports = LinkGetter =
 
   getPost: (link, complete) ->
     url = @apiURL(link)
-    console.log "getting #{url}"
+    console.log "get #{url}"
     $.ajax
       url: url
       dataType: "jsonp"
@@ -50,13 +47,13 @@ module.exports = LinkGetter =
           if $('.jane').prop('checked')
             @circ(post)
           else
-            @link(post)
+            @link(post, complete)
         else
           @comment(post)
-        complete() if complete?
 
-  link: (post) ->
+  link: (post, complete) ->
     @updateBox @linkify(post, false)
+    complete() if complete?
 
   circ: (post) ->
     @updateBox @linkify(post, true)
